@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300;400;700&display=swap');
+*,*::before, *::after{
+    box-sizing: border-box;
+}
+*:root{
+    /* --gap: 5rem; */
+}
+
+.uppercase {
+    text-transform: uppercase;
+}
+.fs-700{
+    font-size: var(--fs-700);
+}
+.fs-400{
+    font-size: var(--fs-400);
+}
+.fs-300{
+    font-size: var(--fs-300);
+}
+
+.fs-300,.fs-400,.fs-700{
+    line-height: 1.1;
+}
+
+.numbered-little {
+    margin-right: 0.5rem;
+    font-weight: 700;
+    color: hsl(var(--clr-white));
+}
+
+.large-button{
+    font-size: 2rem;
+    position: relative;
+    z-index: 1;
+    display: inline-grid;
+    place-items: center;
+    padding: 0 2em;
+    border-radius: 50%;
+    aspect-ratio: 1;
+    text-decoration: none;
+}
+.large-buttona::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    background: hsl(var(--clr-white));
+    border-radius: 50%;
+    opacity: 0;
+    transition: opacity 500ms linear;
+}
+.large-buttona:hover::after,
+.large-buttona:focus:after {
+    opacity: 1;
+    transform: scale(1.5);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.home{
+    font-family: 'Roboto Condensed', sans-serif;
+    height: 100vh;
+    background-image: url(./assets/home/background-home-desktop.jpg);
+    background-size: cover;
+    overflow-x: hidden;
+}
+nav{
+    text-transform: uppercase;
+    
+}
+a{
+    color: #fff;
+    letter-spacing: 1.2px;
+}
+.flex{
+    display: flex;
+    gap: var(--gap, 1rem);
+}
+.grid{
+    display: grid;
+    gap: var(--gap, 1rem);
+}
+.d-block {
+    display: block;
+}
+
+
+
+/* primary header */
+.primary-header{
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    margin: 2rem;
+}
+.mobile-nav-toogle{
+    display: none;
+}
+.primary-navigation{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: hsl(0 0% 0% / 0.75);
+}
+@supports (backdrop-filter: blur(.5rem)){
+    .primary-navigation{
+        background-color: hsl(0 0% 100% / 0.1);
+        backdrop-filter: blur(.5rem);
+    }
+}
+.primary-navigation a{
+    text-decoration: none;
+}
+.primary-navigation a > span{
+    font-weight: 700;
+    margin-inline-end: 0.75em;
+}
+
+@media (max-width: 41em) {
+    .primary-navigation {
+        --gap: 2rem;
+        z-index: 1000;
+        position: fixed;
+        inset: 0 0 0 30%;
+        flex-direction: column;
+        padding: min(30vh, 10rem) 2em;
+        /* padding: 10rem 2rem; */
+        transform: translateX(100%);
+        
+    }
+
+    .primary-navigation[data-visible="true"] {
+        transform: translateX(0%);
+        transition: transform 350ms ease-in-out;
+    }
+
+
+    .mobile-nav-toogle {
+        position: absolute;
+        display: block;
+        top: 2rem;
+        right: 2rem;
+        z-index: 9999;
+        width: 1.5rem;
+        aspect-ratio: 1;
+        background-color: transparent;
+        background-image: url(./assets/shared/icon-hamburger.svg);
+        background-size: cover;
+        border: none;
+        background-repeat: no-repeat;
+    }
+    .mobile-nav-toogle[aria-expanded="true"] {
+        background-color: transparent;
+        background-image: url(./assets/shared/icon-close.svg);
+    }
+
+}
+
+@media (min-width: 41em) and (max-width: 55em){
+    .primary-navigation a  span[aria-hidden="true"] {
+        display: none;
+    }
+}
+@media (min-width: 41em) {
+    .primary-navigation {
+        --gap: clamp(1.5rem, 5vw, 3rem);
+        padding-block: 2rem;
+        padding-inline: clamp(3rem, 10vw, 10rem);
+    }
+}
